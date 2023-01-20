@@ -22,13 +22,14 @@ body{
 }
 .content{
     margin: 106px 0 106px;
+    width: 100%;    
 }
 .message {
-    width: 100%;
     border-radius: 2px;
     padding: 8px;
     margin-bottom: 4px;
     font-size: 14px;
+    text-align: justify;
 }
 .message span.name{
     font-weight: 700;
