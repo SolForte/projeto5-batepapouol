@@ -19,16 +19,27 @@ function request_user_name () {
     post_user_name();
 }
 function post_user_name () {
-    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants",{name: user_name});
+    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants",
+    {
+        name: user_name
+    });
     promise.then(post_user_name_success)
     promise.catch(post_user_name_error)
 }
-function post_user_name_success (){
-    return true;
+function post_user_name_success (success){
+    console.log("Status code: "+success.status)
+    setInterval(user_connection_status, 5000)
 }
 function post_user_name_error (error) {
     console.log(error.response.status+": "+error.response.data);
-    alert("Apelido já em uso.");
+    alert("Apelido já em uso ou apelido inválido.");
     request_user_name();
+}
+function user_connection_status (){
+    axios.post("https://mock-api.driven.com.br/api/v6/uol/status",
+    {
+        name: user_name
+    })
+    console.log("User is connected")
 }
 request_user_name();
