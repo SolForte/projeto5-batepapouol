@@ -29,6 +29,7 @@ function post_user_name () {
 function post_user_name_success (success){
     console.log("Status code: "+success.status)
     setInterval(user_connection_status, 5000)
+    fetch_messages();
 }
 function post_user_name_error (error) {
     console.log(error.response.status+": "+error.response.data);
@@ -41,5 +42,12 @@ function user_connection_status (){
         name: user_name
     })
     console.log("User is connected")
+}
+function fetch_messages (){
+    const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
+    promise.then(display_messages)
+}
+function display_messages(resposta){
+    console.log(resposta.data)
 }
 request_user_name();
