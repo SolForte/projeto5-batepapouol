@@ -69,7 +69,7 @@ function send_message(){
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",{
         from: user_name, to: "Todos", text: input, type: "message"
     })
-    promise.then(display_messages);
+    promise.then(fetch_messages);
     promise.catch(reload);
 }
 function reload() {
