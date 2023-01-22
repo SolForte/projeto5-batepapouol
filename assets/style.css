@@ -82,7 +82,12 @@ body{
     font-size: 18px;
     line-height: 21px;
 }
-.bottom ion-icon{
+.bottom button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+.bottom button ion-icon{
     font-size: 30px;
     margin-right: 27px;
 }

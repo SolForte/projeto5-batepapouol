@@ -41,19 +41,19 @@ function display_messages(message){
     for (let i = 0; i < message.data.length; i++ ){
         if (message.data[i].type === "status"){
             messages.innerHTML = messages.innerHTML + `
-            <li class="message status">
+            <li class="message status" data-test="message>
                 <span class="time">(${message.data[i].time}) </span><span class="name">${message.data[i].from} </span> ${message.data[i].text}
             </li>
             `
         } else if(message.data[i].type === "message"){
             messages.innerHTML = messages.innerHTML + `
-            <li class="message all">
+            <li class="message all" data-test="message>
                 <span class="time">(${message.data[i].time}) </span><span class="name">${message.data[i].from}</span> para <span class="name">${message.data[i].to}</span>: ${message.data[i].text}
             </li>
             `
         } else if (message.data[i].type === "private_message" && (message.data[i].to === user_name || message.data[i].from === user_name)){
             messages.innerHTML = messages.innerHTML + `
-            <li class="message whisper">
+            <li class="message whisper" data-test="message>
                 <span class="time">(${message.data[i].time}) </span><span class="name">${message.data[i].from}</span> reservadamente para <span class="name">${message.data[i].to}</span>: ${message.data[i].text}
             </li>
             `
