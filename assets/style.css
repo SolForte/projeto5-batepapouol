@@ -66,6 +66,10 @@ body{
     margin: 0 17px 0;
     width: 100%;
     border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
 }
 .bottom input::placeholder{
     font-style: italic;
@@ -76,10 +80,6 @@ body{
 }
 .bottom input:focus{
     outline: none;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
 }
 .bottom button {
     padding: 0;
