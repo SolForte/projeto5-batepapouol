@@ -1,19 +1,5 @@
 let user_name;
-/*
-let message_data = [];
-function display_message_data {
-    let message_data_display_content_query = document.querySelector('.content');
-    message_data_display_content_query.innerHTML = "";
-    for(let i = 0; i < message_data.length; index++){
-        let message_data_template = `
-            <li>
-                ${message_data[i].titulo}
-            </li>
-        `;
-        message_data_display_content_query.innerHTML = message_data_display_content_query.innerHTML + message_data_template;
-    }
-}
-*/
+let feed = document.querySelector(".feed");
 function request_user_name () { 
     user_name = prompt("Insira seu apelido:");
     post_user_name();
@@ -49,7 +35,7 @@ function fetch_messages (){
     promise.then(display_messages)
 }
 function display_messages(message){
-    let feed = document.querySelector(".feed");
+    feed = document.querySelector(".feed");
     feed.innerHTML="";
     for (let i = 0; i < message.data.length; i++ ){
         if (message.data[i].type === "status"){
@@ -72,5 +58,9 @@ function display_messages(message){
             `
         }
     }
+   automatic_chat_scroll();
+}
+function automatic_chat_scroll(){
+    document.querySelector(".feed").lastChild.scrollIntoView(true);
 }
 request_user_name()
