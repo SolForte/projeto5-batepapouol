@@ -70,6 +70,9 @@ function send_message(){
         from: user_name, to: "Todos", text: input, type: "message"
     })
     promise.then(display_messages);
-    promise.catch(widow.location.reload());
+    promise.catch(reload);
+}
+function reload() {
+    window.location.reload();
 }
 request_user_name()
