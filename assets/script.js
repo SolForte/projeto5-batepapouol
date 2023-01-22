@@ -27,9 +27,10 @@ function post_user_name () {
     promise.catch(post_user_name_error)
 }
 function post_user_name_success (success){
-    console.log("Status code: "+success.status)
-    setInterval(user_connection_status, 5000)
+    console.log("Status code: "+success.status);
+    setInterval(user_connection_status, 5000);
     fetch_messages();
+    setInterval(fetch_messages, 3000);
 }
 function post_user_name_error (error) {
     console.log(error.response.status+": "+error.response.data);
@@ -47,7 +48,29 @@ function fetch_messages (){
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
     promise.then(display_messages)
 }
-function display_messages(resposta){
-    console.log(resposta.data)
+function display_messages(message){
+    let feed = document.querySelector(".feed");
+    feed.innerHTML="";
+    for (let i = 0; i < message.data.length; i++ ){
+        if (message.data[i].type === "status"){
+            feed.innerHTML = feed.innerHTML + `
+            <li class="message status">
+                <span class="time">(${message.data[i].time}) </span><span class="name">${message.data[i].from} </span> ${message.data[i].text}
+            </li>
+            `
+        } else if(message.data[i].type === "message"){
+            feed.innerHTML = feed.innerHTML + `
+            <li class="message all">
+                <span class="time">(${message.data[i].time}) </span><span class="name">${message.data[i].from}</span> para <span class="name">${message.data[i].to}</span>: ${message.data[i].text}
+            </li>
+            `
+        } else if (message.data[i].type === "private_message" && (message.data[i].to === user_name || message.data[i].from === user_name)){
+            feed.innerHTML = feed.innerHTML + `
+            <li class="message whisper">
+                <span class="time">(${message.data[i].time}) </span><span class="name">${message.data[i].from}</span> reservadamente para <span class="name">${message.data[i].to}</span>: ${message.data[i].text}
+            </li>
+            `
+        }
+    }
 }
-request_user_name();
+request_user_name()
