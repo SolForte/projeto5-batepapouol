@@ -71,6 +71,7 @@ function send_message(){
     })
     promise.then(fetch_messages);
     promise.catch(reload);
+    document.querySelector(`input`).value = "";
 }
 function reload() {
     window.location.reload();
