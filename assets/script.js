@@ -1,6 +1,5 @@
 let userName;
 let messages = document.querySelector(".message_container");
-let connection_discontinuity_check;
 function requestUserName () {
     userName = prompt("Insira seu apelido:");
     postUserName();
@@ -67,7 +66,7 @@ function displayMessages(message){
             `;
         }
     }
-    autoMessageScroll()
+    autoMessageScroll();
 }
 function autoMessageScroll(){
     document.querySelector(".message_container li:nth-last-child(1)").scrollIntoView();
