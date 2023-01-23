@@ -15,8 +15,8 @@ function post_user_name () {
 }
 function post_user_name_success (success){
     console.log("Status code: "+success.status);
-    setInterval(user_connection_status, 5000);
     fetch_messages();
+    setInterval(user_connection_status, 5000);
     setInterval(fetch_messages, 3000);
 }
 function post_user_name_error (error) {
