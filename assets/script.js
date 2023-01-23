@@ -1,5 +1,6 @@
 let user_name;
 let messages = document.querySelector(".message_container");
+let connection_discontinuity_check;
 function request_user_name () { 
     user_name = prompt("Insira seu apelido:");
     post_user_name();
@@ -17,7 +18,6 @@ function post_user_name_success (success){
     setInterval(user_connection_status, 5000);
     fetch_messages();
     setInterval(fetch_messages, 3000);
-    
 }
 function post_user_name_error (error) {
     console.log(error.response.status+": "+error.response.data);
@@ -25,11 +25,11 @@ function post_user_name_error (error) {
     request_user_name();
 }
 function user_connection_status (){
-    axios.post("https://mock-api.driven.com.br/api/v6/uol/status",
+    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/status",
     {
         name: user_name
     })
-    console.log("User is connected")
+    promise.catch(disconnect_alert);
 }
 function fetch_messages (){
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
@@ -75,5 +75,9 @@ function send_message(){
 }
 function reload() {
     window.location.reload();
+}
+function disconnect_alert() { 
+    alert("Você foi desconectado por inatividade.");
+    reload();
 }
 request_user_name()
